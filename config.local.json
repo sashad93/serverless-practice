@@ -1,5 +1,5 @@
 {
 	"aws": {
-        // "id": 
+        // "id":   ID For AWS Account assuming eventual deploy to lambda
     }
 }

@@ -21,3 +21,10 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  order:
+    handler: lib/handlers/order.handler
+    events:
+      - http:
+          path: /order
+          method: POST
+          authorizer: authorize
