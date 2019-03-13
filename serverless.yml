@@ -3,17 +3,15 @@ service: serverless-api-demo
 
 plugins:
   - serverless-offline
-custom:
-  config: ${file(config.${self:provider.stage}.json)}
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
+  stage: ${opt:stage, 'local'}
   region: us-east-1
 
 environment:
-  AWS_ACCOUNT_ID: ${self:custom.config.aws.id}
+  AWS_ACCOUNT_ID: '23489273428'
 
 functions:
   app:
@@ -25,6 +23,25 @@ functions:
     handler: lib/handlers/order.handler
     events:
       - http:
+          path: /order/{id}
+          method: GET
+      - http:
+          path: /orders
+          method: GET
+      - http:
+          path: /order/{id}
+          method: PUT
+      - http:
           path: /order
           method: POST
-          authorizer: authorize
+      - http:
+          path: /order/{id}
+          method: DELETE
+
+
+
+
+
+
+
+
