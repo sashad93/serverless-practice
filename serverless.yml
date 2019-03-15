@@ -1,0 +1,47 @@
+# serverless.yml
+service: serverless-api-demo
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'local'}
+  region: us-east-1
+
+environment:
+  AWS_ACCOUNT_ID: '23489273428'
+
+functions:
+  app:
+    handler: lib/handlers/index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+  order:
+    handler: lib/handlers/order.handler
+    events:
+      - http:
+          path: /order/{id}
+          method: GET
+      - http:
+          path: /orders
+          method: GET
+      - http:
+          path: /order/{id}
+          method: PUT
+      - http:
+          path: /order
+          method: POST
+      - http:
+          path: /order/{id}
+          method: DELETE
+
+
+
+
+
+
+
+
