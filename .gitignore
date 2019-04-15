@@ -6,3 +6,7 @@ jspm_packages
 .serverless
 aws.json
 serverless.db
+
+# Mongo DB
+orders.json
+orders.db
